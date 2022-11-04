@@ -33,7 +33,7 @@ async def help(message: types.Message):
                     "/restart service_name — restarts service_name.service\n" \
                     "\n" \
                     "LOGS:\n" \
-                    "/log service_name — sends a log file of service_name.service from journalctl " \
+                    "/logs service_name — sends a log file of service_name.service from journalctl " \
                     "(last 15 min events only)\n" \
                     "\n" \
                     f"<i>Feel free to email me at <a href=\"mailto:{CONTACT_MAIL}\">{CONTACT_MAIL}</a> " \
