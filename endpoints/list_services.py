@@ -36,10 +36,10 @@ async def help(message: types.Message):
                     "/logs service_name — sends a log file of service_name.service from journalctl " \
                     "(last 15 min events only)\n" \
                     "\n" \
-                    f"<i>Feel free to email me at <a href=\"mailto:{CONTACT_MAIL}\">{CONTACT_MAIL}</a> " \
+                    f"<i>Feel free to email me at {CONTACT_MAIL} " \
                     "if you have any questions</i>\n" \
                     "To get this message again send /help"
-        await message.answer(HELP_TEXT)
+        await message.answer(HELP_TEXT, disable_web_page_preview=True)
 
 
 @dp.message_handler(is_admin, commands=["settings"])
