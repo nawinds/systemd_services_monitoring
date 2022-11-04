@@ -13,3 +13,5 @@ if not os.path.exists(f"{LOCAL_PATH}/modules/data/db"):
     os.mkdir(f"{LOCAL_PATH}/modules/data/db")
 if not os.path.exists(f"{LOCAL_PATH}/temp"):
     os.mkdir(f"{LOCAL_PATH}/temp")
+with open("temp/alerted.txt", "w", encoding="utf-8") as f:
+    f.write("")
