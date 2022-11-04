@@ -7,6 +7,7 @@ from modules.bot import dp
 from modules.helper import is_admin
 from modules.data.db_session import create_session
 from modules.data.services import Service
+from modules.config import CONTACT_MAIL
 from endpoints.systemd_commands import start_service
 
 
@@ -15,7 +16,29 @@ async def help(message: types.Message):
     if len(message.text.split()) > 1:
         await start_service(message)
     else:
-        HELP_TEXT = "test"
+        HELP_TEXT = "Hi, sysadmin :)\n" \
+                    "I'll help you to monitor and manage your systemd services. " \
+                    "Below is a list of commands to help you:\n" \
+                    "\n" \
+                    "SETTINGS:\n" \
+                    "/add service_name — adds service_name.service to the monitoring system\n" \
+                    "/delete service_name — removes service_name.service from the monitoring system\n" \
+                    "\n" \
+                    "MONITORING:\n" \
+                    "/all — lists up/down statuses of all services, added to the monitoring system\n" \
+                    "/status service_name — gets output of <code>systemctl status service_name.service</code> " \
+                    "command\n" \
+                    "/start service_name — starts service_name.service\n" \
+                    "/stop service_name — stops service_name.service\n" \
+                    "/restart service_name — restarts service_name.service\n" \
+                    "\n" \
+                    "LOGS:\n" \
+                    "/log service_name — sends a log file of service_name.service from journalctl " \
+                    "(last 15 min events only)\n" \
+                    "\n" \
+                    f"<i>Feel free to email me at <a href=\"mailto:{CONTACT_MAIL}\">{CONTACT_MAIL}</a> " \
+                    "if you have any questions</i>\n" \
+                    "To get this message again send /help"
         await message.answer(HELP_TEXT)
 
 

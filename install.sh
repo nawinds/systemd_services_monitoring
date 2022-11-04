@@ -56,11 +56,17 @@ sudo systemctl daemon-reload
 sudo systemctl enable monitoring
 sudo systemctl start monitoring
 
-echo "" >> /etc/crontab
-echo "*/1 * * * * export TOKEN=$TOKEN &&
-cd $(pwd) && ./venv/bin/python3 check.py" >> /etc/crontab
+cat /etc/crontab > crontab
+echo "" >> crontab
+echo "*/1 * * * * export TOKEN=$TOKEN && cd $(pwd) && ./venv/bin/python3 check.py" >> crontab
+sudo mv crontab /etc/crontab
 
+echo ""
+echo ""
 echo "#####################################"
+echo ""
+echo "INSTALLATION COMPLETE!"
+echo ""
 echo "If this script ran properly, all monitoring services should be installed."
 echo "There are just a few more steps you need to follow."
 echo ""
@@ -77,3 +83,4 @@ echo "6. To get the systemctl status output for specific service, just send /sta
 echo ""
 echo "That's all you need to know for now."
 echo "Feel free to contact me by me@nawinds.top at any time if you have questions. Enjoy!"
+echo ""
