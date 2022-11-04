@@ -42,6 +42,16 @@ async def help(message: types.Message):
         await message.answer(HELP_TEXT)
 
 
+@dp.message_handler(is_admin, commands=["settings"])
+async def settings(message: types.Message):
+    SETTINGS_HELP_TEXT = "SETTINGS:\n" \
+                         "/add service_name — adds service_name.service to the monitoring system\n" \
+                         "/delete service_name — removes service_name.service from the monitoring system\n" \
+                         "\n" \
+                         "To get full commands list, send /help"
+    await message.answer(SETTINGS_HELP_TEXT)
+
+
 @dp.message_handler(is_admin, commands=["all"])
 async def all_service(message: types.Message):
     session = create_session()
@@ -77,7 +87,8 @@ async def delete_service(message: types.Message):
         await message.reply("Service name?")
         return
     session = create_session()
-    session.query(Service).filter(Service.name == service).first().delete()
+    to_delete = session.query(Service).filter(Service.name == service).first()
+    session.delete(to_delete)
     session.commit()
     logging.info("Service %s deleted", service)
     await message.reply("Service deleted")
