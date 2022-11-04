@@ -10,3 +10,5 @@ if not os.path.exists(f"{LOCAL_PATH}/logs"):
     os.mkdir(f"{LOCAL_PATH}/logs")
 if not os.path.exists(f"{LOCAL_PATH}/modules/db"):
     os.mkdir(f"{LOCAL_PATH}/modules/data/db")
+if not os.path.exists(f"{LOCAL_PATH}/temp"):
+    os.mkdir(f"{LOCAL_PATH}/temp")

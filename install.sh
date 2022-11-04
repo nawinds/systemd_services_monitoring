@@ -32,7 +32,6 @@ echo "[Install]" >> on-failure.service
 echo "WantedBy=multi-user.target" >> on-failure.service
 
 sudo mv on-failure.service /etc/systemd/system/on-failure.service
-sudo rm on-failure.service
 
 # monitoring.service
 echo "[Unit]" > monitoring.service
@@ -52,7 +51,6 @@ echo "[Install]" >> monitoring.service
 echo "WantedBy=multi-user.target" >> monitoring.service
 
 sudo mv monitoring.service /etc/systemd/system/monitoring.service
-sudo rm monitoring.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable monitoring
