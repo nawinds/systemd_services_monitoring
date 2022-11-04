@@ -9,4 +9,4 @@ ADMIN_IDS = list(map(int, os.getenv("ADMIN_IDS", None).split()))
 if not os.path.exists(f"{LOCAL_PATH}/logs"):
     os.mkdir(f"{LOCAL_PATH}/logs")
 if not os.path.exists(f"{LOCAL_PATH}/modules/db"):
-    os.mkdir(f"{LOCAL_PATH}/modules/db")
+    os.mkdir(f"{LOCAL_PATH}/modules/data/db")
