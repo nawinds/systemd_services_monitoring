@@ -7,10 +7,20 @@ from modules.bot import dp
 from modules.helper import is_admin
 from modules.data.db_session import create_session
 from modules.data.services import Service
+from endpoints.systemd_commands import start_service
+
+
+@dp.message_handler(is_admin, commands=["help", "start"])
+async def help(message: types.Message):
+    if len(message.text.split()) > 1:
+        await start_service(message)
+    else:
+        HELP_TEXT = "test"
+        await message.answer(HELP_TEXT)
 
 
 @dp.message_handler(is_admin, commands=["all"])
-async def status_service(message: types.Message):
+async def all_service(message: types.Message):
     session = create_session()
     all_services = session.query(Service).all()
     res = "Services list:\n\n"
@@ -23,7 +33,7 @@ async def status_service(message: types.Message):
 
 
 @dp.message_handler(is_admin, commands=["add"])
-async def status_service(message: types.Message):
+async def add_service(message: types.Message):
     try:
         service = message.text.split()[1]
     except IndexError:

@@ -55,3 +55,25 @@ sudo mv monitoring.service /etc/systemd/system/monitoring.service
 sudo systemctl daemon-reload
 sudo systemctl enable monitoring
 sudo systemctl start monitoring
+
+echo "" >> /etc/crontab
+echo "*/1 * * * * export TOKEN=$TOKEN &&
+cd $(pwd) && ./venv/bin/python3 check.py" >> /etc/crontab
+
+echo "#####################################"
+echo "If this script ran properly, all monitoring services should be installed."
+echo "There are just a few more steps you need to follow."
+echo ""
+echo "WHAT TO DO NOW?"
+echo "1. Open your bot in Telegram and add your first service to monitoring system using /add <service_name> format."
+echo "Your service name must be equal to the systemd service name without \".service\"."
+echo ""
+echo "OTHER BOT COMMANDS:"
+echo "2. You can remove services from the monitoring by using /delete <service_name>."
+echo "3. To view the list of added services and their up/down status use /all command."
+echo "4. You can get the log file of every service (with last 15 minutes) by sending /log <service_name>."
+echo "5. You can start and stop your services by /start <service_name> and /stop <service_name> commands."
+echo "6. To get the systemctl status output for specific service, just send /status <service_name>."
+echo ""
+echo "That's all you need to know for now."
+echo "Feel free to contact me by me@nawinds.top at any time if you have questions. Enjoy!"

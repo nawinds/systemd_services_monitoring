@@ -48,13 +48,8 @@ async def stop_service(message: types.Message):
         await message.reply("Failed to stop service!")
 
 
-@dp.message_handler(is_admin, commands=["start"])
 async def start_service(message: types.Message):
-    try:
-        service = message.text.split()[1]
-    except IndexError:
-        await message.reply("Service name?")
-        return
+    service = message.text.split()[1]
     result = subprocess.run(["sudo", "systemctl", "start", service])
     return_code = str(result.returncode)
     if return_code == "0":
